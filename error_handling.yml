@@ -1,0 +1,33 @@
+---
+- name: Testowanie odporności systemu na awarie
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: Główny blok operacyjny
+      block:
+        - name: 1. Tworzenie pliku produkcyjnego
+          ansible.builtin.file:
+            path: /tmp/aplikacja_produkcyjna.txt
+            state: touch
+
+        - name: 2. Próba instalacji złośliwego/nieistniejącego pakietu (Celowy błąd)
+          ansible.builtin.apt:
+            name: pakiet-ktory-nie-istnieje-w-ubuntu
+            state: present
+
+      rescue:
+        - name: REAKCJA NA AWARIĘ Usuwanie śladów i przywracanie stanu stabilnego
+          ansible.builtin.file:
+            path: /tmp/aplikacja_produkcyjna.txt
+            state: absent
+
+        - name: Powiadomienie administratora
+          ansible.builtin.debug:
+            msg: "UWAGA! Instalacja się nie powiodła. Wykonano automatyczny rollback systemu!"
+
+      always:
+        - name: 🧹 Sprzątanie końcowe (Wykona się zawsze)
+          ansible.builtin.debug:
+            msg: "Zadanie zakończone. Zamykam bezpieczną sesję diagnostyczną."
