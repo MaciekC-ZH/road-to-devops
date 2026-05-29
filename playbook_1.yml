@@ -1,0 +1,29 @@
+---
+- name: Moja pierwsza automatyzacja serwera
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: 1. Utworz uzytkownika devops_junior
+      ansible.builtin.user:
+        name: devops_junior
+        shell: /bin/bash
+        state: present
+
+    - name: 2. Zainstaluj pakiet htop
+      ansible.builtin.apt:
+        name: htop
+        state: present
+        update_cache: yes
+
+    - name: 3. Zainstaluj i uruchom serwer Nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+
+    - name: 4. Upewnij sie, ze Nginx jest wlaczony i dziala
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: yes
