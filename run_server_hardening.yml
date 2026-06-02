@@ -1,0 +1,8 @@
+---
+- name: Bezpieczne środowisko na nowym serwerze
+  hosts: localhost
+  connection: local
+  become: true
+
+  roles:
+    - server_hardening

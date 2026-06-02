@@ -1,0 +1,39 @@
+---
+# tasks file for server_hardening
+
+- name: "KROK 1: Instalacja firewalla UFW"
+  ansible.builtin.apt:
+    name: ufw
+    state: present
+
+- name: "KROK 2: Reguła dla SSH (Port 22)"
+  community.general.ufw:
+    rule: allow
+    port: '22'
+    proto: tcp
+
+- name: "KROK 3: Reguła dla HTTP (Port 80)"
+  community.general.ufw:
+    rule: allow
+    port: '80'
+    proto: tcp
+
+- name: "KROK 4: Włączenie firewalla i ustawienie domyślnej polityki blokowania"
+  community.general.ufw:
+    state: enabled
+    policy: deny
+    direction: incoming
+
+- name: "KROK 5: Bezpieczna strefa dodawania audytora"
+  block:
+    - name: Próba dodania użytkownika do błędnej grupy
+      ansible.builtin.user:
+        name: audytor_security
+        groups: grupa-ktora-nie-istnieje
+        state: present
+  rescue:
+    - name: AWARYJNY ROLLBACK Dodanie użytkownika do standardowej grupy
+      ansible.builtin.user:
+        name: audytor_security
+        groups: sudo
+        state: present
