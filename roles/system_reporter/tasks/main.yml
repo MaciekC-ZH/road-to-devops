@@ -7,7 +7,7 @@
 - name: Wygeneruj plik raportu na podstawie szablonu Jinja2
   ansible.builtin.template:
     src: raport.html.j2
-    dest: /var/www/html/index.html
+    dest: "{{ sciezka_raportu }}"
     owner: www-data
     group: www-data
     mode: '0644'

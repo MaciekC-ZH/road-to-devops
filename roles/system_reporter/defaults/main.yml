@@ -1,2 +1,3 @@
----
 # defaults file for system_reporter
+sciezka_raportu: /var/www/html/index.html
+
