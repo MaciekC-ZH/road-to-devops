@@ -1,0 +1,24 @@
+---
+- name: Konfiguracja mojej strony WWW
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    imie_autora: "Twój Nick (Junior DevOps)"
+
+  tasks:
+    - name: Stwórz plik index.html ze specjalną zawartością
+      ansible.builtin.copy:
+        content: |
+          <html>
+          <head><title>Homelab</title></head>
+          <body>
+          <h1>Witaj w moim imperium!</h1>
+          <p>Ten serwer zostal skonfigurowany przez Ansible.</p>
+          <p>Autor: {{ imie_autora }}</p>
+          </body>
+          </html>
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'

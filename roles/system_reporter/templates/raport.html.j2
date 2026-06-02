@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Raport Systemowy DevOps</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1 { color: #333; }
+        .fact { margin: 10px 0; font-size: 18px; }
+        .highlight { font-weight: bold; color: #4A90E2; }
+        hr { border: 0; height: 1px; background: #ddd; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Raport wygenerowany automatycznie przez Ansible</h1>
+        <p class="fact">Nazwa hosta: <span class="highlight">{{ ansible_hostname }}</span></p>
+        <p class="fact">System operacyjny: <span class="highlight">{{ ansible_distribution }} {{ ansible_distribution_version }}</span></p>
+        <p class="fact">Liczba procesorów vCPU: <span class="highlight">{{ ansible_processor_vcpus }}</span></p>
+        <p class="fact">Całkowita pamięć RAM: <span class="highlight">{{ ansible_memtotal_mb }} MB</span></p>
+        <p class="fact">Czas wygenerowania raportu: <span class="highlight">{{ ansible_date_time.date }} o godzinie {{ ansible_date_time.time }}</span></p>
+        
+        <hr>
+        
+        {% if ansible_memtotal_mb < 3072 %}
+        <div style="background-color: #ffcccc; color: #cc0000; padding: 15px; border-radius: 4px; font-weight: bold; margin-bottom: 10px;">
+            ⚠️ OSTRZEŻENIE: Serwer ma mniej niż 3 GB pamięci RAM (Wykryto: {{ ansible_memtotal_mb }} MB). Zoptymalizuj usługi!
+        </div>
+        {% else %}
+        <div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 4px; font-weight: bold; margin-bottom: 10px;">
+            ✅ STATUS: Zasoby pamięci RAM są na optymalnym poziomie (Wykryto: {{ ansible_memtotal_mb }} MB).
+        </div>
+        {% endif %}
+
+        {% if ansible_processor_vcpus == 1 %}
+        <div style="background-color: #fff3cd; color: #856404; padding: 15px; border-radius: 4px; font-weight: bold;">
+            ℹ️ Wydajność: Konfiguracja jedno-rdzeniowa (Słaba wydajność).
+        </div>
+        {% else %}
+        <div style="background-color: #d1ecf1; color: #0c5460; padding: 15px; border-radius: 4px; font-weight: bold;">
+            ℹ️ Wydajność: Konfiguracja wielo-rdzeniowa (Dobra wydajność).
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

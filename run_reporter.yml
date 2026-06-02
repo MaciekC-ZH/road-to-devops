@@ -1,0 +1,8 @@
+---
+- name: Uruchomienie modulowego raportu systemowego
+  hosts: localhost
+  connection: local
+  become: true
+
+  roles:
+    - system_reporter

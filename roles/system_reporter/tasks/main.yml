@@ -1,0 +1,14 @@
+# tasks file for system_reporter
+- name: Upewnij sie, ze Nginx jest zainstalowany
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+
+- name: Wygeneruj plik raportu na podstawie szablonu Jinja2
+  ansible.builtin.template:
+    src: raport.html.j2
+    dest: /var/www/html/index.html
+    owner: www-data
+    group: www-data
+    mode: '0644'
+# tasks file for system_reporter
