@@ -1,0 +1,20 @@
+---
+# tasks file for docker_stack
+
+- name: "KROK 1: Uruchomienie uslugi Docker w tle"
+  ansible.builtin.systemd:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: "KROK 2: Tworzenie folderu na konfiguracje"
+  ansible.builtin.file:
+    path: /opt/moje_kontenery
+    state: directory
+    mode: '0755'
+
+- name: "KROK 3: Kopiowanie pliku docker-compose na serwer"
+  ansible.builtin.copy:
+    src: docker-compose.yml
+    dest: /opt/moje_kontenery/docker-compose.yml
+    mode: '0644'

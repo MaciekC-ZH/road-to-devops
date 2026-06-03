@@ -1,0 +1,8 @@
+---
+- name: Automatyzacja srodowiska Docker
+  hosts: localhost
+  connection: local
+  become: true
+
+  roles:
+    - docker_stack

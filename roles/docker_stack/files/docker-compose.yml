@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  baza_redis:
+    image: redis:alpine
+    container_name: testowy_redis
+    ports:
+      - "6379:6379"
+    restart: always
