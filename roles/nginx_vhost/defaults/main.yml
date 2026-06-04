@@ -1,0 +1,6 @@
+---
+wirtualny_port: 8082
+nazwa_domeny: moj-testowy-serwer.local
+
+
+# defaults file for nginx_vhost

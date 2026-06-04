@@ -1,0 +1,9 @@
+server {
+    listen {{ wirtualny_port }};
+    server_name {{ nazwa_domeny }};
+
+    location / {
+        root /var/www/html;
+        index index.html;
+    }
+}
