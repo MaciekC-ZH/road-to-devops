@@ -1,2 +1,15 @@
 ---
+- name: "Instalacja Nginx"
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+- name: "Tworzenie katalogu dla wirtualnego hosta"
+  ansible.builtin.template:
+    src: vhost.conf.j2
+    dest: /etc/nginx/sites-available/default
+- name: "Restartowanie Nginx"
+  ansible.builtin.systemd:
+    name: nginx
+    state: restarted
+
 # tasks file for nginx_vhost
