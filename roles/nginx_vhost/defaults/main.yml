@@ -1,6 +1,6 @@
 ---
 wirtualny_port: 8082
 nazwa_domeny: moj-testowy-serwer.local
-
+katalog_strony: /var/www/projekt3
 
 # defaults file for nginx_vhost

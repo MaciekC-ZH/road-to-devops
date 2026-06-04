@@ -3,6 +3,17 @@
   ansible.builtin.apt:
     name: nginx
     state: present
+- name: "Tworzenie dedykowanego folderu dla nowej strony"
+  ansible.builtin.file:
+    path: "{{ katalog_strony }}"
+    state: directory
+    mode: '0755'
+
+- name: "Tworzenie nowej strony powitalnej"
+  ansible.builtin.copy:
+    content: "<h1>Działa strona z Projektu 3 na porcie 8082!</h1>"
+    dest: "{{ katalog_strony }}/index.html"
+    mode: '0644'
 - name: "Tworzenie katalogu dla wirtualnego hosta"
   ansible.builtin.template:
     src: vhost.conf.j2

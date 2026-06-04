@@ -3,7 +3,7 @@ server {
     server_name {{ nazwa_domeny }};
 
     location / {
-        root /var/www/html;
+        root {{ katalog_strony }};
         index index.html;
     }
 }
