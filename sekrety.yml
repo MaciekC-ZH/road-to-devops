@@ -1,0 +1,5 @@
+---
+lista_pracownikow:
+  - { login: 'jan_kowalski', uprawnienia: 'sudo' }
+  - { login: 'anna_nowak', uprawnienia: 'user' }
+  - { login: 'audytor_security', uprawnienia: 'sudo' }
