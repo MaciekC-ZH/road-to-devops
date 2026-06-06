@@ -1,2 +1,18 @@
----
-# tasks file for utility_server.yml
+- name: "Instalacja curl, git i htop"
+  ansible.builtin.apt:
+    name:
+      - curl
+      - git
+      - htop
+    state: present
+- name: "Stworzenie folderu Admina"
+  ansible.builtin.file:
+    path: /opt/narzedzia_devops
+    state: directory
+    mode: '0700'
+- name: "Szablon wersja.txt.j2"
+  ansible.builtin.template:
+    src: wersja.txt.j2
+    dest: roles/utility_server/templates/wersja.txt
+    mode: '0644'
+  
