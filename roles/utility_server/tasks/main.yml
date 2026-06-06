@@ -10,9 +10,9 @@
     path: /opt/narzedzia_devops
     state: directory
     mode: '0700'
-- name: "Szablon wersja.txt.j2"
+- name: "Kopiowanie pliku wersja.txt do folderu Admina"
   ansible.builtin.template:
     src: wersja.txt.j2
-    dest: roles/utility_server/templates/wersja.txt
-    mode: '0644'
+    dest: /opt/narzedzia_devops/wersja.txt
+    mode: '0600'
   
