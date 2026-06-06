@@ -4,7 +4,6 @@
   connection: local
   become: true
 
-  # 1. Kazemy Ansible wczytac nasz zaszyfrowany plik jako zrodlo zmiennych
   vars_files:
     - sekrety.yml
 
@@ -14,7 +13,6 @@
         name: "{{ item.login }}"
         state: present
         shell: /bin/bash
-      # To jest petla! Przeleci przez cala liste z pliku sekrety.yml
       loop: "{{ lista_pracownikow }}"
 
     - name: "BEZPIECZENSTWO: Dodawanie wybranych osob do grupy administratorow"
@@ -23,5 +21,4 @@
         groups: sudo
         append: yes
       loop: "{{ lista_pracownikow }}"
-      # To jest warunek! To zadanie wykona sie TYLKO dla osob, ktore maja uprawnienia 'sudo'
       when: item.uprawnienia == 'sudo'
