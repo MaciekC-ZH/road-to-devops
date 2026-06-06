@@ -1,0 +1,24 @@
+---
+  name: Serwer narzędziowy
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: Instalacja curl, git, htop
+      ansible.builtin.apt:
+        name:
+          - curl
+          - git
+          - htop
+        state: present
+        update_cache: yes
+    - name: Folder narzędziowy
+      ansible.builtin.file:
+      path: /opt/narzedzia_devops
+      state: directory
+      mode: '0700'
+    - name: Szablon ninja2
+      ansible.builtin.template:
+        src: szablon_ninja2.j2
+        dest: /opt/narzedzia_devops/konfiguracja.conf
+        mode: '0600'
