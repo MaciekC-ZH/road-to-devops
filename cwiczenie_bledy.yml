@@ -1,0 +1,31 @@
+---
+- name: "Cwiczenie 1: Kontrola i obsluga bledow"
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: "SEKCJA GLOWNA: Proba wykonania zadan"
+      block:
+        - name: "1. To zadanie wykona sie bez problemu"
+          ansible.builtin.debug:
+            msg: "Zaczynamy ryzykowna operacje..."
+
+        - name: "2. Celowa proba instalacji bzdurnego pakietu (Wymusi blad)"
+          ansible.builtin.apt:
+            name: nieistniejacy-pakiet-123
+            state: present
+
+        - name: "3. To zadanie nigdy sie nie wykona, bo krok wyzej wywalil blad"
+          ansible.builtin.debug:
+            msg: "Sukces, udalo sie zainstalowac!"
+
+      rescue:
+        - name: "PLAN RATUNKOWY: Reakcja na awarie"
+          ansible.builtin.debug:
+            msg: "ALARM! Krok w sekcji BLOCK sie wywalil! Uruchamiam procedury awaryjne..."
+
+      always:
+        - name: "SPRZATANIE: To zadanie wykona sie zawsze"
+          ansible.builtin.debug:
+            msg: "Koniec bloku. Zamykam polaczenia i koncze prace."
