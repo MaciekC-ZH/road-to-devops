@@ -1,0 +1,36 @@
+- name: "Obsluga bledow i rollback"
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: "Tworzenie pliku tekstowego"
+      ansible.builtin.copy:
+        content: "root, jan_kowalski"
+        dest: /etc/admin_list.txt
+
+    - name: "Blok zadania i odzyskiwania"
+      block:
+        - name: "Tworzenie kopii zapasowej"
+          ansible.builtin.copy:
+            src: /etc/admin_list.txt
+            dest: /tmp/admin_list.txt.bak
+            remote_src: true
+
+        - name: "Próba nadpisania pliku - generowanie błędu"
+          ansible.builtin.copy:
+            content: "root, jan_kowalski, anna_nowak"
+            dest: /etc/bugownica/admin_list.txt
+
+      rescue:
+        - name: "Przywracanie po awarii"
+          ansible.builtin.copy:
+            src: /tmp/admin_list.txt.bak
+            dest: /etc/admin_list.txt
+            remote_src: true
+
+      always:
+        - name: "Usuwanie kopii zapasowej"
+          ansible.builtin.file:
+            path: /tmp/admin_list.txt.bak
+            state: absent
