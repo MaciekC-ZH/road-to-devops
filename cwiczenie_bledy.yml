@@ -1,31 +1,39 @@
 ---
-- name: "Cwiczenie 1: Kontrola i obsluga bledow"
+- name: "Cwiczenie 1b: Praktyczna obsluga bledow i bezpieczny rollback"
   hosts: localhost
   connection: local
   become: true
 
   tasks:
-    - name: "SEKCJA GLOWNA: Proba wykonania zadan"
+    # KROK PRZYGOTOWAWCZY: Tworzymy plik, który udaje naszą obecną, działającą konfigurację
+    - name: "PRZYGOTOWANIE: Stworzenie obecnego pliku konfiguracyjnego"
+      ansible.builtin.copy:
+        content: "Wersja_Stabilna_v1.0"
+        dest: /tmp/serwer.conf
+
+    # SEKCJA GŁÓWNA ORAZ AWARYJNA
+    - name: "PROCES WDROŻENIA: Bezpieczna aktualizacja"
       block:
-        - name: "1. To zadanie wykona sie bez problemu"
-          ansible.builtin.debug:
-            msg: "Zaczynamy ryzykowna operacje..."
+        - name: "1. Tworzenie kopii zapasowej (Backupu) obecnej konfiguracji"
+          ansible.builtin.copy:
+            src: /tmp/serwer.conf
+            dest: /tmp/serwer.conf.bak
+            remote_src: true
 
-        - name: "2. Celowa proba instalacji bzdurnego pakietu (Wymusi blad)"
-          ansible.builtin.apt:
-            name: nieistniejacy-pakiet-123
-            state: present
-
-        - name: "3. To zadanie nigdy sie nie wykona, bo krok wyzej wywalil blad"
-          ansible.builtin.debug:
-            msg: "Sukces, udalo sie zainstalowac!"
+        - name: "2. Próba wdrożenia nowej konfiguracji (Celowy błąd - złe źródło pliku)"
+          ansible.builtin.copy:
+            src: /katalog/ktory/nie/istnieje/nowy.conf  # <-- To wywoła awarię systemu
+            dest: /tmp/serwer.conf
 
       rescue:
-        - name: "PLAN RATUNKOWY: Reakcja na awarie"
-          ansible.builtin.debug:
-            msg: "ALARM! Krok w sekcji BLOCK sie wywalil! Uruchamiam procedury awaryjne..."
+        - name: "AWARYJNY ROLLBACK: Przywracanie starej konfiguracji z backupu"
+          ansible.builtin.copy:
+            src: /tmp/serwer.conf.bak
+            dest: /tmp/serwer.conf
+            remote_src: true
 
       always:
-        - name: "SPRZATANIE: To zadanie wykona sie zawsze"
-          ansible.builtin.debug:
-            msg: "Koniec bloku. Zamykam polaczenia i koncze prace."
+        - name: "SPRZĄTANIE: Bezwarunkowe usunięcie pliku kopii zapasowej"
+          ansible.builtin.file:
+            path: /tmp/serwer.conf.bak
+            state: absent
