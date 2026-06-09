@@ -1,0 +1,19 @@
+
+- name: "Cwiczenie 2: Zrozumienie mechanizmu Handlers"
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: "1. Modyfikacja pliku konfiguracyjnego"
+      ansible.builtin.copy:
+        content: "Port_Serwera: 9090"
+        dest: /tmp/test_handlers.conf
+      # To jest klucz! Jesli ten plik sie zmieni, wyslij sygnal do handlera
+      notify: "Przeladuj usluge testowa"
+
+  # Ta sekcja czeka na sygnaly z notify. Wykona sie na samym koncu!
+  handlers:
+    - name: "Przeladuj usluge testowa"
+      ansible.builtin.debug:
+        msg: "HANDLER URUCHOMIONY: Wykryto status CHANGED. Przeładowuję konfigurację..."
