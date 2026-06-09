@@ -1,0 +1,19 @@
+- name: "Samodzielne zadanie z Handlers"
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: "Stworzenie pliku config"
+      ansible.builtin.copy:
+        content: "IP_ADDRESS=10.0.0.5"
+        dest: /tmp/log_mixer.net
+      notify: "Restart sieci miksera"
+
+  handlers:
+    - name: "Restart sieci miksera"
+      ansible.builtin.file:
+        path: /tmp/old_session.log
+        state: absent
+        
+       
