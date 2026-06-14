@@ -1,0 +1,26 @@
+---
+- name: "Bezstresowa powtorka i rozgrzewka"
+  hosts: localhost
+  connection: local
+  become: true
+
+  vars:
+    # Przypomnienie: Zwykła zmienna tekstowa
+    uzytkownik: "Me DevOps"
+    # Przypomnienie: Lista (Array), którą zaraz przejedziemy pętlą
+    katalogi:
+      - "/tmp/strefa_spokoju_1"
+      - "/tmp/strefa_spokoju_2"
+
+  tasks:
+    - name: "1. Witaj z powrotem na pokładzie"
+      ansible.builtin.debug:
+        msg: "Cześć {{ uzytkownik }}! Dobrze, że jesteś. Robimy spokojny przegląd."
+
+    - name: "2. Tworzenie katalogów za pomocą pętli (loop)"
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+      # Przypomnienie: loop bierze każdy element z listy 'katalogi' i podstawia pod {{ item }}
+      loop: "{{ katalogi }}"
