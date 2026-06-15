@@ -1,0 +1,29 @@
+- name: Projekt Powtórka
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "Tworzenie folderów za pomocą pętli"
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - /tmp/raporty_prod
+        - /tmp/raporty_dev
+
+    - name: "Czyszczenie /tmp ze staroci"
+      ansible.builtin.file:
+        path: "/tmp/stary_raport.tmp"
+        state: absent
+    
+    - name: "Wgranie configu"
+      ansible.builtin.copy:
+        content: "SYSTEM_STATUS=AKTYWNY"
+        dest: /tmp/raporty_prod/konfiguracja.cfg
+        notify: "Uruchom walidacje systemu"
+
+  handlers:
+    - name: "Uruchom walidacje systemu"
+      ansible.builtin.debug:
+        msg: "HANDLER: Konfiguracja uległa zmianie! System raportowy został pomyślnie zwalidowany."
