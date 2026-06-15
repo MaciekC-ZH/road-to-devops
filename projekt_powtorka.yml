@@ -23,7 +23,7 @@
       ansible.builtin.copy:
         content: "SYSTEM_STATUS=AKTYWNY"
         dest: /tmp/raporty_prod/konfiguracja.cfg
-        notify: "Uruchom walidacje systemu"
+      notify: "Uruchom walidacje systemu"
 
 
   handlers:
