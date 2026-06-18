@@ -1,0 +1,12 @@
+- name: "Cwiczenie 3: Automatyczne wstrzykiwanie zmiennych z grup i hostow"
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: "1. Pokaz zmienna wyciagnieta z host_vars"
+      ansible.builtin.debug:
+        msg: "Pracuję na maszynie w środowisku: {{ nazwa_srodowiska }} (Limit: {{ limit_pamieci }})"
+
+    - name: "2. Pokaz zmienna wyciagnieta z group_vars"
+      ansible.builtin.debug:
+        msg: "Dla całej grupy serwerów instaluję: {{ wspolny_pakiet }} na porcie {{ zmienna_grupowa_port }}"
