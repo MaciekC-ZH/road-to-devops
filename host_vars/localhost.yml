@@ -1,2 +1,4 @@
 nazwa_srodowiska: "DEVEL-LOKALNY"
 limit_pamieci: "512MB"
+stacja_identyfikator: "LOKALNY-SEKTOR-01"
+tlen_poziom: "98%"

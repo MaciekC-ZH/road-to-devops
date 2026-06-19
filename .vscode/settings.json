@@ -1,0 +1,6 @@
+{
+    "ansible.validation.lint.enabled": false,
+    "ansible.lightspeed.suggestions.enabled": true,
+    "editor.inlineSuggest.suppressSuggestions": true,
+    "editor.suggest.snippetsPreventQuickSuggestions": true
+}

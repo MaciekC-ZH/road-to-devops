@@ -1,0 +1,14 @@
+- name: "Projekt - zmienne grupowe"
+  hosts: space_stations
+  become: true
+
+  tasks:
+    - name: "Tworzenie folderu na dane"
+      ansible.builtin.file:
+      path: "{{ folder_docelowy }}"
+      state: directory
+
+    - name: "Plik raportu"
+      ansible.builtin.copy:
+      dest: "{{ folder_docelowy }}/raport.txt"
+      content: "SYSTEM: {{ stacja_projekt }} | ID: {{ stacja_identyfikator }} | TLEN: {{ tlen_poziom }}"
