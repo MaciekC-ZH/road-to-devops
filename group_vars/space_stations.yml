@@ -1,2 +1,4 @@
 stacja_projekt: "Projekt-Orion"
 folder_docelowy: "/tmp/orion_data"
+wersja_systemu: "v2.4.1"
+sciezka_bazy: "/tmp/spaceport/db"
