@@ -1,38 +1,38 @@
 - name: "Projekt Finalny - mix wszystkiego"
   connection: local
-  hosts: speace_stations
+  hosts: space_stations
   become: true
 
   vars:
     lista_folderow:
       - "{{ sciezka_bazy }}/config"
       - "{{ sciezka_bazy }}/db"
-
-  blocks:
-    - name: "Tworzenie folderu petla"
-      ansible.builtin.file:
-      loop: " {{ lista_folderow }}"
-      state: directory
-      mode: "0755"
-    
-    - name: "Sprawdzanie wersji"
-      ansible.builtin.debug:
-        msg: "Weryfikacja wersji krytycznej zakończona sukcesem!"
+  tasks: 
+    block:
+      - name: "Tworzenie folderu petla"
+        ansible.builtin.file:
+          path: "{{ item }}"
+          state: directory
+          mode: "0755"
+        loop: " {{ lista_folderow }}"
+      
+      - name: "Sprawdzanie wersji"
+        ansible.builtin.debug:
+          msg: "Weryfikacja wersji krytycznej zakończona sukcesem!"
         when:  wersja_systemu == "v2.4.1"
 
-    - name: "Tworzenie konfigu"
-      ansible.builtin.copy:
-        dest: "/tmp/spaceport/config/launch.cfg"
-        content: "WEZEL={{ nazwa_wezla }} | TOKEN={{ tajny_token }}"
-      notify:
-        - "Restart systemow portu"
+      - name: "Tworzenie konfigu"
+        ansible.builtin.copy:
+          dest: "/tmp/spaceport/config/launch.cfg"
+          content: "WEZEL={{ nazwa_wezla }} | TOKEN={{ tajny_token }}"
+        notify: "Restart systemow portu"
 
-  rescue:
-    - name: "Wyświetlenie bledu"
-      ansible.builtin.debug:
-        msg: "AWARIA: Wykryto błąd w konfiguracji Kosmodromu! Cofam zmiany."
+    rescue:
+      - name: "Wyświetlenie bledu"
+        ansible.builtin.debug:
+          msg: "AWARIA: Wykryto błąd w konfiguracji Kosmodromu! Cofam zmiany."
 
   handlers:
-   - name: "Restart systemow portu"
-     ansible.builtin.debug:
-       msg: "HANDLER: Wykryto nową konfigurację. Systemy startowe zrestartowane pomyślnie!"   
+    - name: "Restart systemow portu"
+      ansible.builtin.debug:
+        msg: "HANDLER: Wykryto nową konfigurację. Systemy startowe zrestartowane pomyślnie!"   
