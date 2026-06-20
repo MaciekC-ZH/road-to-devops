@@ -1,38 +1,40 @@
+---
 - name: "Projekt Finalny - mix wszystkiego"
   connection: local
-  hosts: space_stations
+  hosts: space_stations              # <-- Poprawiona literówka
   become: true
 
   vars:
     lista_folderow:
       - "{{ sciezka_bazy }}/config"
       - "{{ sciezka_bazy }}/db"
-  tasks: 
-    block:
-      - name: "Tworzenie folderu petla"
-        ansible.builtin.file:
-          path: "{{ item }}"
-          state: directory
-          mode: "0755"
-        loop: " {{ lista_folderow }}"
-      
-      - name: "Sprawdzanie wersji"
-        ansible.builtin.debug:
-          msg: "Weryfikacja wersji krytycznej zakończona sukcesem!"
-        when:  wersja_systemu == "v2.4.1"
 
-      - name: "Tworzenie konfigu"
-        ansible.builtin.copy:
-          dest: "/tmp/spaceport/config/launch.cfg"
-          content: "WEZEL={{ nazwa_wezla }} | TOKEN={{ tajny_token }}"
-        notify: "Restart systemow portu"
+  tasks:                             # <-- KROK 1: Otwieramy sekcję zadań
+    - block:                         # <-- KROK 2: Uruchamiamy block (bez "s")
+        - name: "Tworzenie folderu petla"
+          ansible.builtin.file:
+            path: "{{ item }}"       # <-- Pamiętasz? W module file podajemy 'path' zamiast 'dest'
+            state: directory
+            mode: "0755"
+          loop: "{{ lista_folderow }}" # <-- Poprawione wcięcie i usunięta spacja z początku stringa
 
-    rescue:
-      - name: "Wyświetlenie bledu"
-        ansible.builtin.debug:
-          msg: "AWARIA: Wykryto błąd w konfiguracji Kosmodromu! Cofam zmiany."
+        - name: "Sprawdzanie wersji"
+          ansible.builtin.debug:
+            msg: "Weryfikacja wersji krytycznej zakończona sukcesem!"
+          when: wersja_systemu == "v2.4.1" # <-- Poprawione wcięcie (w linii z modułem debug)
 
-  handlers:
+        - name: "Tworzenie konfigu"
+          ansible.builtin.copy:
+            dest: "/tmp/spaceport/config/launch.cfg"
+            content: "WEZEL={{ nazwa_wezla }} | TOKEN={{ tajny_token }}"
+          notify: "Restart systemow portu" # <-- Prostszy, klasyczny zapis notify
+
+      rescue:                        # <-- KROK 3: Ratunek, jeśli block się wywali
+        - name: "Wyświetlenie bledu"
+          ansible.builtin.debug:
+            msg: "AWARIA: Wykryto błąd w konfiguracji Kosmodromu! Cofam zmiany."
+
+  handlers:                          # <-- Sekcja niezależna, wyrównana do lewej strony
     - name: "Restart systemow portu"
       ansible.builtin.debug:
-        msg: "HANDLER: Wykryto nową konfigurację. Systemy startowe zrestartowane pomyślnie!"   
+        msg: "HANDLER: Wykryto nową konfigurację. Systemy startowe zrestartowane pomyślnie!"
