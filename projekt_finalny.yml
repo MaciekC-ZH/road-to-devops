@@ -6,7 +6,7 @@
 
   vars:
     lista_folderow:
-      - "{{ sciezka_bazy }}/config"
+      - "/tmp/spaceport/config"
       - "{{ sciezka_bazy }}/db"
 
   tasks:                             # <-- KROK 1: Otwieramy sekcję zadań
