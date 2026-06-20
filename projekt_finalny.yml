@@ -1,10 +1,12 @@
 - name: "Projekt Finalny - mix wszystkiego"
+  connection: local
   hosts: speace_stations
   become: true
 
-  lista_folderow:
-    - "{{ sciezka_bazy }}/config"
-    - "{{ sciezka_bazy }}/db"
+  vars:
+    lista_folderow:
+      - "{{ sciezka_bazy }}/config"
+      - "{{ sciezka_bazy }}/db"
 
   blocks:
     - name: "Tworzenie folderu petla"
