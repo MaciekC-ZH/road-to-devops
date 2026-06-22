@@ -1,0 +1,38 @@
+- name: "Projekt cyber-bank"
+  hosts: bnank_servers
+  become: true
+
+  vars:
+    lista_folderów:
+      - "{{ bank_katalog_glowny }}/transactions"
+      - "{{ bank_katalog_glowny }}/logs"
+  tasks:
+    - block:
+        - name: "Tworzenie katalogów banku"
+          ansible.builtin.file:
+            path: "{{ item }}"
+            state: directory  
+            mode: "0700"
+          loop: "{{ lista_folderów }}"
+
+        - name: "Wymogi bezpieczeństwa"
+          ansible.builtin.debug:
+            msg: "Wymogi bezpieczeństwa placówki spełnione."
+            when: kod_placowki == "HQ-WARSAW"
+
+        - name: "Tworzenie pliku"
+          ansible.builtin.copy:
+            dest: "{{ bank_katalog_glowny }}/transactions/vault.cfg"
+            content: "PLACOWKA={{ kod_placowki }} | KEY={{ klucz_deszyfrujacy }}"
+          notify: "uruchomnienie audytu bankowego"
+
+      rescue:
+        - name: "Wyświetlenie błędu"
+          ansible.builtin.debug:
+            msg: "ALARM: Próba naruszenia struktury banku! Blokada operacji."
+
+  handlers:
+    - name: "uruchomnienie audytu bankowego"
+      ansible.builtin.debug:
+        msg: "HANDLER: System transakcyjny zabezpieczony. Audyt bezpieczeństwa uruchomiony pomyślnie."
+        
