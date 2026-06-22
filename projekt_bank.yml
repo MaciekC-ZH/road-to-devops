@@ -6,6 +6,7 @@
     lista_folderów:
       - "{{ bank_katalog_glowny }}/transactions"
       - "{{ bank_katalog_glowny }}/logs"
+      
   tasks:
     - block:
         - name: "Tworzenie katalogów banku"
