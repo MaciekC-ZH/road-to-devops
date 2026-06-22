@@ -20,7 +20,7 @@
         - name: "Wymogi bezpieczeństwa"
           ansible.builtin.debug:
             msg: "Wymogi bezpieczeństwa placówki spełnione."
-            when: kod_placowki == "HQ-WARSAW"
+          when: kod_placowki == "HQ-WARSAW"
 
         - name: "Tworzenie pliku"
           ansible.builtin.copy:
