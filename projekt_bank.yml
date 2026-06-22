@@ -1,6 +1,6 @@
 - name: "Projekt cyber-bank"
-  hosts: bank_servers
   connection: local
+  hosts: bank_servers
   become: true
 
   vars:
