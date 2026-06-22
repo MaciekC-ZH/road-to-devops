@@ -1,3 +1,4 @@
+---
 - name: "Projekt cyber-bank"
   connection: local
   hosts: bank_servers
@@ -9,7 +10,8 @@
       - "{{ bank_katalog_glowny }}/logs"
 
   tasks:
-    - block:
+    - name: "Główny blok operacji bankowych"
+      block:
         - name: "Tworzenie katalogów banku"
           ansible.builtin.file:
             path: "{{ item }}"
@@ -37,4 +39,3 @@
     - name: "uruchomnienie audytu bankowego"
       ansible.builtin.debug:
         msg: "HANDLER: System transakcyjny zabezpieczony. Audyt bezpieczeństwa uruchomiony pomyślnie."
-        
