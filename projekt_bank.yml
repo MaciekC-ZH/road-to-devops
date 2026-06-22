@@ -3,10 +3,10 @@
   become: true
 
   vars:
-    lista_folderów:
+    lista_folderow:
       - "{{ bank_katalog_glowny }}/transactions"
       - "{{ bank_katalog_glowny }}/logs"
-      
+
   tasks:
     - block:
         - name: "Tworzenie katalogów banku"
@@ -14,7 +14,7 @@
             path: "{{ item }}"
             state: directory  
             mode: "0700"
-          loop: "{{ lista_folderów }}"
+          loop: "{{ lista_folderow }}"
 
         - name: "Wymogi bezpieczeństwa"
           ansible.builtin.debug:
