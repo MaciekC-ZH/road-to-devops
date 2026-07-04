@@ -38,5 +38,14 @@ Rozpoczęcie przygotowań do certyfikacji AWS Certified Cloud Practitioner. Zroz
    * **Roles:** Tożsamości o charakterze tymczasowym przeznaczone dla maszyn i usług wewnętrznych AWS, eliminujące potrzebę używania              niebezpiecznych, statycznych kluczy dostępowych (*Access Keys*).
 6. **Logika Polityk IAM (JSON):** Domyślnie każdy dostęp w AWS jest zabroniony (*Implicit Deny*). Uprawnienia są nadawane przez deklaracje   `Allow`. Kluczowa zasada bezpieczeństwa: jawne zaprzeczenie (*Explicit Deny*) zawsze nadpisuje i blokuje wszelkie pozwolenia `Allow`.
 7. **Skala Korporacyjna (AWS Organizations):** Centralne zarządzanie wieloma kontami AWS za pomocą jednej skonsolidowanej faktury oraz globalne ograniczanie uprawnień na poziomie całych kont za pomocą polityk SCP (*Service Control Policies*).
+8. ### Moce Obliczeniowe Chmury (AWS EC2 & EBS)
+A. **Amazon EC2 (Elastic Compute Cloud):** Wirtualne serwery w chmurze (model IaaS). Dzielą się na rodziny instancji w zależności od potrzeb: General Purpose (ogólne, np. t2.micro we Free Tier), Compute Optimized (pod procesor) oraz Memory Optimized (pod dużą ilość RAM, np. dla bazy Redis).
+B. **Amazon EBS (Elastic Block Store):** Wirtualne, sieciowe dyski twarde dopinane do maszyn EC2. Żyją niezależnie od samych serwerów, co pozwala na bezpieczne przepinanie danych między instancjami w przypadku awarii komputera.
+C. **Modele zakupowe EC2:**
+   * **On-Demand:** Płatność za sekundy działania, pełna elastyczność, najwyższa cena bazowa.
+   * **Reserved Instances / Savings Plans:** Zniżki do 72% w zamian za deklarację korzystania z maszyn przez 1 rok lub 3 lata (dla stałych systemów produkcyjnych).
+   * **Spot Instances:** Giełda wolnych mocy AWS ze zniżkami do 90%. Ryzyko wyłączenia maszyny przez AWS w ciągu 2 minut. Idealne do zadań odpornych na przerwania (np. przetwarzanie wsadowe, renderowanie, testy).
+   * **Dedicated Hosts:** Wynajem całego fizycznego serwera na wyłączność.
+   * * **Spot Instances:** Giełda wolnych mocy AWS ze zniżkami do 90%. Ryzyko wyłączenia maszyny przez AWS w ciągu 2 minut. Dane na podpiętym dysku EBS nie giną (EBS żyje niezależnie), jednak automatyczne uruchomienie nowej maszyny Spot i ponowne wpięcie dysku wymaga oprogramowania automatyzacji (np. za pomocą Auto Scaling Group i skryptów startowych). Idealne do zadań odpornych na przerwania.
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
