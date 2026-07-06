@@ -49,5 +49,6 @@ C. **Modele zakupowe EC2:**
    * * **Spot Instances:** Giełda wolnych mocy AWS ze zniżkami do 90%. Ryzyko wyłączenia maszyny przez AWS w ciągu 2 minut. Dane na podpiętym dysku EBS nie giną (EBS żyje niezależnie), jednak automatyczne uruchomienie nowej maszyny Spot i ponowne wpięcie dysku wymaga oprogramowania automatyzacji (np. za pomocą Auto Scaling Group i skryptów startowych). Idealne do zadań odpornych na przerwania.
 * ### Status Konta AWS:
 - AWS Free Tier Account: UTWORZONE (Gotowe do laboratoriów praktycznych).
+- AWS Admin-user (non-root), zabezpieczenia.
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
