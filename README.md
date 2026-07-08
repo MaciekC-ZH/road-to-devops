@@ -50,5 +50,10 @@ C. **Modele zakupowe EC2:**
 * ### Status Konta AWS:
 - AWS Free Tier Account: UTWORZONE (Gotowe do laboratoriów praktycznych).
 - AWS Admin-user (non-root), zabezpieczenia.
+  ### Status Laboratorium EC2 (Pierwsze Wdrożenie):
+- Pierwszy serwer w chmurze: URUCHOMIONY (`moj-pierwszy-serwer-devops` w regionie eu-central-1).
+- Zabezpieczenie sieciowe: Firewall (Security Group) skonfigurowany wyłącznie na domowy publiczny adres IP.
+- Autentykacja: Pomyślne połączenie SSH przy użyciu dedykowanego klucza `.pem` z restrykcyjnymi uprawnieniami `chmod 400`.
+- Weryfikacja zasobów: Maszyna pomyślnie zweryfikowana komendami `uname` oraz `free -h` pod kątem parametrów Free Tier.
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
