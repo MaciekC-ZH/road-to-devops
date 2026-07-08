@@ -55,5 +55,8 @@ C. **Modele zakupowe EC2:**
 - Zabezpieczenie sieciowe: Firewall (Security Group) skonfigurowany wyłącznie na domowy publiczny adres IP.
 - Autentykacja: Pomyślne połączenie SSH przy użyciu dedykowanego klucza `.pem` z restrykcyjnymi uprawnieniami `chmod 400`.
 - Weryfikacja zasobów: Maszyna pomyślnie zweryfikowana komendami `uname` oraz `free -h` pod kątem parametrów Free Tier.
+  **Warstwowość zabezpieczeń sieciowych (Security Group vs NACL):**
+   * **Security Group:** Firewall stanowy (*stateful*) na poziomie pojedynczego serwera EC2. Automatycznie zezwala na ruch powrotny. Używany do codziennego zarządzania portami aplikacji (np. port 22 dla SSH, port 80 dla HTTP).
+   * **NACL (Network Access Control List):** Firewall bezstanowy (*stateless*) na poziomie całej podsieci (*subnet*). Wymaga jawnego definiowania ruchu wejściowego i wyjściowego. Służy do globalnych reguł bezpieczeństwa (np. masowe blokowanie złośliwych adresów IP).
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
