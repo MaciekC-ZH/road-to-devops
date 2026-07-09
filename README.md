@@ -58,5 +58,9 @@ C. **Modele zakupowe EC2:**
   **Warstwowość zabezpieczeń sieciowych (Security Group vs NACL):**
    * **Security Group:** Firewall stanowy (*stateful*) na poziomie pojedynczego serwera EC2. Automatycznie zezwala na ruch powrotny. Używany do codziennego zarządzania portami aplikacji (np. port 22 dla SSH, port 80 dla HTTP).
    * **NACL (Network Access Control List):** Firewall bezstanowy (*stateless*) na poziomie całej podsieci (*subnet*). Wymaga jawnego definiowania ruchu wejściowego i wyjściowego. Służy do globalnych reguł bezpieczeństwa (np. masowe blokowanie złośliwych adresów IP).
+* ### Automatyzacja Instancji (EC2 User Data):
+- Bootstrapping: Pomyślnie wdrożono automatyczną konfigurację serwera Nginx za pomocą skryptu instalacyjnego Bash przekazanego jako *User Data*.
+- Diagnostyka i Troubleshooting: Opanowano proces weryfikacji logów automatyzacji chmurowej w pliku `/var/log/cloud-init-output.log` zarządzanym przez mechanizm `cloud-init`.
+- Świadomość sieciowa: Przeanalizowano zachowanie przeglądarek wymuszających protokół HTTPS (port 443) i upewniono się o konieczności jawnego testowania nieszyfrowanych portów HTTP (port 80) w fazie deweloperskiej.
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
