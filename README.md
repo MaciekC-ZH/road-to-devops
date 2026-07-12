@@ -62,5 +62,15 @@ C. **Modele zakupowe EC2:**
 - Bootstrapping: Pomyślnie wdrożono automatyczną konfigurację serwera Nginx za pomocą skryptu instalacyjnego Bash przekazanego jako *User Data*.
 - Diagnostyka i Troubleshooting: Opanowano proces weryfikacji logów automatyzacji chmurowej w pliku `/var/log/cloud-init-output.log` zarządzanym przez mechanizm `cloud-init`.
 - Świadomość sieciowa: Przeanalizowano zachowanie przeglądarek wymuszających protokół HTTPS (port 443) i upewniono się o konieczności jawnego testowania nieszyfrowanych portów HTTP (port 80) w fazie deweloperskiej.
+- ## Chmurowy Magazyn Danych (Amazon S3)
+### Opis i cel
+Zrozumienie działania bezserwerowego magazynu obiektów (Object Storage) Amazon S3, konfiguracji polityk dostępu (Bucket Policies) oraz optymalizacji kosztów przechowywania danych.
+### Opanowane pojęcia i umiejętności:
+1. **Zasada działania S3:** Magazynowanie obiektów (pliki + metadane) w kubełkach (Buckets). Globalna unikalność nazw kubełków oraz trwałość danych na poziomie 11 dziewiątek (99.999999999%) dzięki automatycznej replikacji między minimum 3 Strefami Dostępności (AZ).
+2. **Zarządzanie uprawnieniami (JSON Bucket Policy):** Zrozumienie, że wyłączenie *Block Public Access* to za mało – domyślnie zasoby są zablokowane (*Implicit Deny*). Skonfigurowano politykę kubełka w formacie JSON (`s3:GetObject`), udostępniającą pliki statyczne dla całego internetu (`Principal: *`).
+3. **Klasy przechowywania (Storage Classes):**
+   * *S3 Standard* – wysoka wydajność, ciągły dostęp.
+   * *S3 Infrequent Access (IA)* – rzadki dostęp, tańszy zapis, opłata za odczyt.
+   * *S3 Glacier (Deep Archive)* – zamrażarka danych, najniższy koszt, czas odmrażania danych do kilkunastu godzin (pod backupy i compliance).
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
