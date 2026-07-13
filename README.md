@@ -72,5 +72,15 @@ Zrozumienie działania bezserwerowego magazynu obiektów (Object Storage) Amazon
    * *S3 Standard* – wysoka wydajność, ciągły dostęp.
    * *S3 Infrequent Access (IA)* – rzadki dostęp, tańszy zapis, opłata za odczyt.
    * *S3 Glacier (Deep Archive)* – zamrażarka danych, najniższy koszt, czas odmrażania danych do kilkunastu godzin (pod backupy i compliance).
+* ## Projekt 13: Zarządzalne Bazy Danych (Amazon RDS)
+### Opis i cel
+Uruchomienie i konfiguracja relacyjnej bazy danych MySQL w chmurze za pomocą usługi Amazon RDS (Platform as a Service) oraz zabezpieczenie jej na poziomie sieciowym.
+### Opanowane pojęcia i umiejętności:
+1. **Zalety Amazon RDS:** Automatyzacja backupów, patchowania oraz skalowania zasobów bez konieczności administracji systemem operacyjnym.
+2. **Architektura wysokiej dostępności i wydajności:**
+   * **Multi-AZ:** Synchroniczna replikacja do zapasowej bazy w innej strefie dostępności z automatycznym failoverem (High Availability).
+   * **Read Replicas:** Asynchroniczne kopie bazy służące do odciążania ruchu poprzez kierowanie zapytań `SELECT` na serwery lustrzane.
+3. **Zabezpieczenie sieciowe bazy:** Przypisanie dedykowanej grupy bezpieczeństwa `sg-baza-rds` i otwarcie portu domyślnego dla MySQL (**3306**) wyłącznie dla bezpiecznego, domowego adresu IP (*My IP*).
+4. **Troubleshooting interfejsu AWS:** Opanowanie modyfikacji parametrów łączności i grup bezpieczeństwa bezpośrednio na działającym zasobie chmurowym.
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
