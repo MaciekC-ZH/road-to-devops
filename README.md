@@ -72,7 +72,7 @@ Zrozumienie działania bezserwerowego magazynu obiektów (Object Storage) Amazon
    * *S3 Standard* – wysoka wydajność, ciągły dostęp.
    * *S3 Infrequent Access (IA)* – rzadki dostęp, tańszy zapis, opłata za odczyt.
    * *S3 Glacier (Deep Archive)* – zamrażarka danych, najniższy koszt, czas odmrażania danych do kilkunastu godzin (pod backupy i compliance).
-* ## Projekt 13: Zarządzalne Bazy Danych (Amazon RDS)
+* ## Zarządzalne Bazy Danych (Amazon RDS)
 ### Opis i cel
 Uruchomienie i konfiguracja relacyjnej bazy danych MySQL w chmurze za pomocą usługi Amazon RDS (Platform as a Service) oraz zabezpieczenie jej na poziomie sieciowym.
 ### Opanowane pojęcia i umiejętności:
@@ -82,5 +82,15 @@ Uruchomienie i konfiguracja relacyjnej bazy danych MySQL w chmurze za pomocą us
    * **Read Replicas:** Asynchroniczne kopie bazy służące do odciążania ruchu poprzez kierowanie zapytań `SELECT` na serwery lustrzane.
 3. **Zabezpieczenie sieciowe bazy:** Przypisanie dedykowanej grupy bezpieczeństwa `sg-baza-rds` i otwarcie portu domyślnego dla MySQL (**3306**) wyłącznie dla bezpiecznego, domowego adresu IP (*My IP*).
 4. **Troubleshooting interfejsu AWS:** Opanowanie modyfikacji parametrów łączności i grup bezpieczeństwa bezpośrednio na działającym zasobie chmurowym.
+5. ## Wirtualne Sieci Prywatne (AWS VPC)
+### Opis i cel
+Zrozumienie podstaw projektowania odizolowanych środowisk sieciowych w chmurze AWS oraz separacji zasobów na podsieci publiczne i prywatne.
+### Opanowane pojęcia:
+1. **AWS VPC:** Prywatne, wirtualne centrum danych inżyniera w chmurze z własną adresacją CIDR.
+2. **Podsieci (Subnets):**
+   * *Public Subnet* – podsieć z trasą do Internet Gateway, dedykowana dla usług frontendowych/serwerów WWW.
+   * *Private Subnet* – odizolowana podsieć bez dostępu ze świata, dedykowana dla baz danych (RDS) i backendu.
+3. **Internet Gateway (IGW) & Route Tables:** Mechanizmy routowania ruchu chmurowego i definiowania "okien na świat" dla podsieci publicznych.
+4. **Ruch wewnętrzny:** Zrozumienie, że komunikacja między podsiecią publiczną a prywatną odbywa się bezpiecznie wewnątrz chmury za pomocą tras lokalnych (*Local Route*), bez potrzeby wystawiania wrażliwych zasobów do internetu.
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
