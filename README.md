@@ -92,5 +92,7 @@ Zrozumienie podstaw projektowania odizolowanych środowisk sieciowych w chmurze 
    * *Private Subnet* – odizolowana podsieć bez dostępu ze świata, dedykowana dla baz danych (RDS) i backendu.
 3. **Internet Gateway (IGW) & Route Tables:** Mechanizmy routowania ruchu chmurowego i definiowania "okien na świat" dla podsieci publicznych.
 4. **Ruch wewnętrzny:** Zrozumienie, że komunikacja między podsiecią publiczną a prywatną odbywa się bezpiecznie wewnątrz chmury za pomocą tras lokalnych (*Local Route*), bez potrzeby wystawiania wrażliwych zasobów do internetu.
+Tydzień powtórkowy:
+D1 - pisanie na sucho dockerfile + Ansible + pytania toretyczne
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
