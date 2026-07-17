@@ -94,5 +94,6 @@ Zrozumienie podstaw projektowania odizolowanych środowisk sieciowych w chmurze 
 4. **Ruch wewnętrzny:** Zrozumienie, że komunikacja między podsiecią publiczną a prywatną odbywa się bezpiecznie wewnątrz chmury za pomocą tras lokalnych (*Local Route*), bez potrzeby wystawiania wrażliwych zasobów do internetu.
 Tydzień powtórkowy:
 D1 - pisanie na sucho dockerfile + Ansible + pytania toretyczne
+D2 - pisanie na sucho playbooka + pytania o ARN, porty efemeryczne, sieć publiczna vs prywatna
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
