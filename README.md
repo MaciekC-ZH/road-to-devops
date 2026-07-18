@@ -95,5 +95,6 @@ Zrozumienie podstaw projektowania odizolowanych środowisk sieciowych w chmurze 
 Tydzień powtórkowy:
 D1 - pisanie na sucho dockerfile + Ansible + pytania toretyczne
 D2 - pisanie na sucho playbooka + pytania o ARN, porty efemeryczne, sieć publiczna vs prywatna
+D3 - zadanie praktyczne. Konfiguracja instancji EC2 za pomocą playbooka Ansible: dodanie maszyny do pliku hosts w celu uzyskania połączenia SSH, automatyczne skopiowanie pliku docker-compose z lokalnej VM na EC2 oraz uruchomienie stacku kontenerów (Nginx + MySQL).
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
