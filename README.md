@@ -98,5 +98,6 @@ D2 - pisanie na sucho playbooka + pytania o ARN, porty efemeryczne, sieć public
 D3 - zadanie praktyczne. Konfiguracja instancji EC2 za pomocą playbooka Ansible: dodanie maszyny do pliku hosts w celu uzyskania połączenia SSH, automatyczne skopiowanie pliku docker-compose z lokalnej VM na EC2 oraz uruchomienie stacku kontenerów (Nginx + MySQL).
 D4 - wstęp teoretycny do Boto3, czyli zadządzanie EC2 za pomocą biblioteki Pythona - początki automatyzacji.
 D5 - połączenie się do EC2 przez API Pythona, działające połączenie.
+D6 - wyciąganie danych o instancji EC2 za pomocą Boto3 - praktyczne zrozumienie podstaw.
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
