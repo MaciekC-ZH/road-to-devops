@@ -103,17 +103,15 @@ Poniższe zestawienie przedstawia chronologiczny przebieg moich prac w chmurze A
 * **Komunikacja wewnętrzna:** Skonfigurowanie bezpiecznej wymiany ruchu między podsieciami za pomocą tras lokalnych (*Local Route*).
 
 ### 📍 Krok 5: Tydzień Konsolidacji – Łączenie AWS, Ansible & Dockera
-* **Dzień 1–2 (Trening Składni):** Pisanie na sucho plików `Dockerfile` i playbooków Ansible oraz repetytorium z zakresu portów efemerycznych, sieci i identyfikatorów ARN.
-* **Dzień 3 (Integracja Hybrydowa):** Automatyczna konfiguracja instancji EC2 za pomocą Ansible. Dodanie maszyny do pliku `hosts`, transfer plików `docker-compose.yml` przez SSH i uruchomienie wielokontenerowego stacka (Nginx + MySQL) w chmurze.
+* **Dzień 1–3 (Trening Składni):** Pisanie na sucho plików `Dockerfile` i playbooków Ansible oraz test z zakresu portów efemerycznych, sieci i identyfikatorów ARN.
+* **Dzień 4-6 (Integracja Hybrydowa):** Automatyczna konfiguracja instancji EC2 za pomocą Ansible. Dodanie maszyny do pliku `hosts`, transfer plików `docker-compose.yml` przez SSH i uruchomienie wielokontenerowego stacka (Nginx + MySQL) w chmurze.
 
 ### 📍 Krok 6: Programistyczna Automatyzacja Chmury (Python & Boto3)
-* **Dzień 4–5 (Połączenie z API):** Konfiguracja biblioteki `boto3` w Pythonie i nawiązanie stabilnego połączenia z API AWS z poziomu kodu.
-* **Dzień 6–7 (Audyt EC2):** Pobieranie metadanych o uruchomionych instancjach EC2, filtry oraz operowanie na słownikach i pętlach w Pythonie.
-* **Dzień 8 (Automatyzacja S3):**
+* **Połączenie z API AWS:** Wstęp do automatyzacji chmury z użyciem Pythona. Konfiguracja biblioteki `boto3` i nawiązanie stabilnego połączenia z API AWS z poziomu kodu.
+* **Audyt i Zarządzanie EC2:** Pobieranie szczegółowych metadanych o instancjach EC2 za pomocą API. Praktyczne wykorzystanie pętli, słowników i funkcji w Pythonie do filtrowania i kontroli stanu maszyn wirtualnych.
+* **Automatyzacja Magazynu S3:** 
   * Programistyczny upload, download oraz listowanie obiektów w bucketach S3.
   * Stworzenie autorskiego skryptu narzędziowego w Pythonie do audytu i automatycznej retencji/czyszczenia plików w chmurze według określonych kryteriów.
 
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów w nauce DevOps.*
----
-*Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
