@@ -100,5 +100,6 @@ D4 - wstęp teoretycny do Boto3, czyli zadządzanie EC2 za pomocą biblioteki Py
 D5 - połączenie się do EC2 przez API Pythona, działające połączenie.
 D6 - wyciąganie danych o instancji EC2 za pomocą Boto3 - praktyczne zrozumienie podstaw.
 D7 - pobieranie danych za pomocą Boto3 - ciąg dalszy. Powtórki Pythona z pętli, słowników i funkcji.
+D8 - upload i dowload z bucketu S3. Listowanie obiektów z S3 i wybranych parametrów. Skrypt do audytu i automatycznego czyszczenia plików wg. kryteriów.
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów.*
