@@ -113,6 +113,7 @@ Poniższe zestawienie przedstawia chronologiczny przebieg moich prac w chmurze A
   * Programistyczny upload, download oraz listowanie obiektów w bucketach S3.
   * Stworzenie autorskiego skryptu narzędziowego w Pythonie do audytu i automatycznej retencji/czyszczenia plików w chmurze według określonych kryteriów.
   * Skrypty Boto3 do tworzenia, zarzadzania cyklem zycia i automatycznego sprzatania EC2 po tagach.
-
+* **Tydzień powtórkowy:**
+* D1 - Orkiestracja generowania raportu S3 za pomoca Basha i Pythona. Bash uruchamia skrypt w Boto3, który pobiera potrzebne info o zawartości S3 + generuje raport.csv. Bash wyświetla jego treść.
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów w nauce DevOps.*
