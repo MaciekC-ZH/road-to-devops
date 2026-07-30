@@ -115,5 +115,6 @@ Poniższe zestawienie przedstawia chronologiczny przebieg moich prac w chmurze A
   * Skrypty Boto3 do tworzenia, zarzadzania cyklem zycia i automatycznego sprzatania EC2 po tagach.
 * **Tydzień powtórkowy:**
 * D1 - Orkiestracja generowania raportu S3 za pomoca Basha i Pythona. Bash uruchamia skrypt w Boto3, który pobiera potrzebne info o zawartości S3 + generuje raport.csv. Bash wyświetla jego treść.
+* D2 - konteneryzacja skryptu Boto3 - pobieranie raportu S3 wewnatrz Dockera. Mix: boto3, Dockerfile, docker-compose
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów w nauce DevOps.*
