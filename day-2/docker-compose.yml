@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  aws-inspector:
+    build: .
+    container_name: python_boto3_container
+    volumes:
+      # Kopiujemy Twoje poświadczenia AWS z dysku do kontenera!
+      - ~/.aws:/root/.aws:ro
+      # Montujemy lokalny folder pod wyjście z kontenera (podłączenie dysku)
+      - ./output:/app/output

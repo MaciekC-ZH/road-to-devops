@@ -1,0 +1,29 @@
+- name: "Run docker"
+  become: true
+  hosts: webservers
+
+  tasks:
+    - name: "Aktualizacja i instalacja Dockera"
+      ansible.builtin.apt:
+        name: docker.io
+        state: latest
+        update_cache: yes
+
+    - name: "Instalacja docker-compose"
+      ansible.builtin.apt:
+        name: docker-compose-v2
+        state: present
+
+    - name: "Kopiowanie pliku docker-compose na serwer"
+      ansible.builtin.copy:
+        src: ./docker-compose.yml
+        dest: /home/ubuntu/docker-compose.yml
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+
+    - name: "Uruchomienie stacku kontenerów za pomoca Docker Compose"
+      ansible.builtin.shell:
+        cmd: "docker compose up -d"
+      args:
+        chdir: /home/ubuntu
