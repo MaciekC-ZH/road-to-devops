@@ -1,0 +1,15 @@
+### 🛡️ Grupa 1: Strażnicy Bezpieczeństwa
+- **SG (Security Group – Grupa Bezpieczeństwa):** Firewall działający na poziomie pojedynczej instancji (EC2) lub bazy (RDS). Działa jak "zamki w drzwiach do mieszkania". Jest **stanowy (stateful)** – jeśli wpuści ruch, automatycznie wypuści odpowiedź. Domyślnie blokuje wszystko, jawnie otwieramy tylko porty (np. 22 dla SSH, 80 dla HTTP).
+- **NACL (Network Access Control List):** Firewall działający na poziomie całej podsieci (Subnetu). Działa jak "ochroniarz na bramie osiedla". Jest **bezstanowy (stateless)** – nie pamięta stanu połączenia, dlatego wymaga konfiguracji reguł wejściowych oraz wyjściowych (uwzględniając porty efemeryczne klienta `1024-65535`). Może jawnie pozwalać (*Allow*) lub zabraniać (*Deny*).
+- **IAM (Identity and Access Management):** System zarządzania tożsamościami i uprawnieniami w chmurze AWS. "Dział kadr" – definiuje użytkowników, grupy oraz role i przypisuje im precyzyjne polityki dostępu (kto, co i w jakim zakresie może klikać/automatyzować).
+
+### 🌐 Grupa 2: Architektura Sieci i Centra Danych
+- **VPC (Virtual Private Cloud):** Wirtualna, całkowicie odizolowana sieć prywatna wewnątrz AWS. "Prywatna działka ogrodzona płotem" wynajmowana od Amazona pod budowę infrastruktury.
+- **IGW (Internet Gateway):** Brama/modem łączący sieć VPC z publicznym internetem. Bez podpięcia IGW do tabeli routingu podsieci, żadna maszyna nie ma wyjścia na świat.
+- **AZ (Availability Zone – Strefa Dostępności):** Fizyczne, odizolowane od siebie centrum danych (jedno lub kilka połączonych) w konkretnym regionie chmurowym (np. Frankfurt posiada AZ1, AZ2, AZ3). Projektujemy infrastrukturę (np. bazy RDS w Multi-AZ), aby awaria jednego budynku nie położyła działania całej aplikacji.
+
+### 🛠️ Grupa 3: Maszyny, Zasoby i Dane
+- **EC2 (Elastic Compute Cloud):** Wirtualna maszyna (serwer) w chmurze. Zwykły komputer z wybranym systemem (np. Ubuntu), którym zarządzamy zdalnie.
+- **RDS (Relational Database Service):** Zarządzalna usługa bazodanowa (np. MySQL). AWS bierze na siebie instalację systemu, backupy i aktualizacje – inżynier dostaje gotowy punkt połączenia (Endpoint).
+- **AMI (Amazon Machine Image):** Gotowy szablon/obraz systemu operacyjnego (np. czyste Ubuntu 22.04 z preinstalowanymi pakietami). "Pendrive z instalatorem", na bazie którego AWS w kilka sekund stawia maszynę EC2.
+- **ARN (Amazon Resource Name):** Absolutnie unikalny identyfikator (jak numer PESEL) nadawany każdemu zasobowi w skali globalnej AWS, używany m.in. przy pisaniu polityk bezpieczeństwa (np. `arn:aws:s3:::nazwa-kubełka/*`).
