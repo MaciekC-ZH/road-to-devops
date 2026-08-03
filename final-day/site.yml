@@ -1,0 +1,36 @@
+---
+- name: Wielki Final - Automatyczna konfiguracja serwera WWW
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: 1. Aktualizacja paczek i instalacja Nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: 2. Wgranie dedykowanej strony glownej HTML
+      ansible.builtin.copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head><title>DevOps Hybrid Pipeline</title></head>
+          <body style="text-align:center; font-family:Arial; padding-top:50px; background-color:#f4f4f9;">
+            <h1 style="color:#2c3e50;">🚀 WIELKI FINAŁ ZALICZONY!</h1>
+            <p style="font-size:18px;">Ta infrastruktura zostala postawiona przez <b>Boto3 (Python)</b>,</p>
+            <p style="font-size:18px;">a ten serwer Nginx skonfigurowal <b>Ansible Playbook</b>!</p>
+            <hr style="width:50%;">
+            <p style="color:#7f8c8d;">Inzynier DevOps: Maciek 🦾</p>
+          </body>
+          </html>
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: 3. Upewnienie sie, ze Nginx dziala i startuje z systemem
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
