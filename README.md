@@ -118,5 +118,6 @@ Poniższe zestawienie przedstawia chronologiczny przebieg moich prac w chmurze A
 * D2 - konteneryzacja skryptu Boto3 - pobieranie raportu S3 wewnatrz Dockera. Mix: boto3, Dockerfile, docker-compose
 * D3 - uruchamianie EC2 z Bashem w UserData, który instaluje nginx w celu wygenerowania raportu z podstawowymi info o systemie.
 * D4 - tworzenie EC2 w Boto3 i pelna konfiguracja przez Ansible - spore problemy z kluczami.
+* D5 - Wdrozenie pelnego hybrydowego pipeline'a Python Boto3 + Ansible na AWS EC2. Teoria i zrozumienie działania, jutro praktyka.
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów w nauce DevOps.*
