@@ -1,0 +1,27 @@
+---
+- name: Konfiguracja serwera EC2 za pomoca Ansible
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Aktualizacja pętli apt oraz instalacja Nginx i Curl
+      ansible.builtin.apt:
+        name:
+          - nginx
+          - curl
+        state: present
+        update_cache: yes
+
+    - name: Utworzenie strony glownej HTML
+      ansible.builtin.copy:
+        content: "<h1>🚀 Zbudowano za pomoca Ansible Playbook na EC2!</h1>"
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Upewnienie sie, ze Nginx jest uruchomiony
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
