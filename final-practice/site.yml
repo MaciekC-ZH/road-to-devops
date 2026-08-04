@@ -1,0 +1,23 @@
+---
+- name: Playbook
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Instalacja i aktualizacja
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Stawianie strony
+      ansible.builtin.copy:
+        dest: /var/www/html/index.html
+        content: <h1>Server postawiony przeze mnie!</h1>
+        mode: '0644'
+
+    - name: Czy leci z nami Nginx?
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
