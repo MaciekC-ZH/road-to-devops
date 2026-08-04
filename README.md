@@ -119,5 +119,6 @@ Poniższe zestawienie przedstawia chronologiczny przebieg moich prac w chmurze A
 * D3 - uruchamianie EC2 z Bashem w UserData, który instaluje nginx w celu wygenerowania raportu z podstawowymi info o systemie.
 * D4 - tworzenie EC2 w Boto3 i pelna konfiguracja przez Ansible - spore problemy z kluczami.
 * D5 - Wdrozenie pelnego hybrydowego pipeline'a Python Boto3 + Ansible na AWS EC2. Teoria i zrozumienie działania, jutro praktyka.
+* D6 - pełny pipeline Boto3 > Ansible > AWS EC2. W 85% moja robota. Oficjalne zakończenie powtórek. Wstęp teoretyczny do Terraform. 
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów w nauce DevOps.*
