@@ -1,7 +1,7 @@
 ---
 - name: Wielki Final - Automatyczna konfiguracja serwera WWW
   hosts: webservers
-  become: yes
+  become: true
 
   tasks:
     - name: 1. Aktualizacja paczek i instalacja Nginx
