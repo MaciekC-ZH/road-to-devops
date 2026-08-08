@@ -123,5 +123,6 @@ Poniższe zestawienie przedstawia chronologiczny przebieg moich prac w chmurze A
 ### 📍 Krok 7: Rozpoczęcie nauki Terraform
 * Teoria i zapoznanie się ze składnią.
 * Pierwsze uruchomienie Bucketa S3 i zastosowanie variables.tf i outputs.tf przy budowaniu S3.
+* Pobieranie AMI przez data source, Security Group i instancja EC2.
 ---
 *Repozytorium jest stale aktualizowane w miarę moich codziennych postępów w nauce DevOps.*
